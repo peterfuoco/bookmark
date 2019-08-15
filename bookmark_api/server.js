@@ -3,17 +3,26 @@ const app = express();
 const port = 3003;
 const bookmarksController = require('./controllers/bookmarks');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // middleware
-
 app.use(express.json());
+app.use(express.json());
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 
 // routes
 app.use('/bookmarks', bookmarksController);
-
-app.get('/', (req, res) => {
-  res.send('Hey Peter');
-});
 
 // Mongoose Stuff
 // Error
