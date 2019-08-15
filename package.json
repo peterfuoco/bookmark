@@ -1,0 +1,23 @@
+{
+  "name": "bookmark",
+  "version": "1.0.0",
+  "description": "Hey I added this my name is Nick!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterfuoco/bookmark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterfuoco/bookmark/issues"
+  },
+  "homepage": "https://github.com/peterfuoco/bookmark#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
