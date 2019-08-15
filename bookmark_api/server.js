@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3003;
 const bookmarksController = require('./Models/bookmarks');
+const mongoose = require('mongoose');
 
 // middleware
 
