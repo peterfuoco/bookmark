@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import AddBookmark from './components/AddBookmark';
+import axios from 'axios';
+import Show from './components/Show'
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -17,10 +19,25 @@ class App extends Component {
       bookmarks: []
     };
   }
+
+  async getBookmarks() {
+    const response = await axios(`${baseURL}/bookmarks`);
+    const data = response.data;
+    this.setState({
+      bookmarks: data
+    })
+  }
+
+  componentDidMount() {
+    this.getBookmarks();
+  
+  }
+
   render() {
     return (
       <div className='App'>
-        <AddBookmark />
+        <AddBookmark  />
+        <Show bookmarks={this.state.bookmarks} />
       </div>
     );
   }
