@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 3003;
+const bookmarksController = require('./Models/bookmarks');
 
 // middleware
 
 app.use(express.json());
+
+// routes
+app.use(('/bookmarks', bookmarksController));
 
 app.get('/', (req, res) => {
   res.send('Hey Peter');
