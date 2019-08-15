@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3003;
-const bookmarksController = require('./Models/bookmarks');
+const bookmarksController = require('./Controllers/bookmarks');
 const mongoose = require('mongoose');
 
 // middleware
@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 app.use(express.json());
 
 // routes
-app.use(('/bookmarks', bookmarksController));
+app.use('/bookmarks', bookmarksController);
 
 app.get('/', (req, res) => {
   res.send('Hey Peter');
@@ -33,5 +33,5 @@ mongoose.connection.once('open', () => {
 
 // Listening
 app.listen(port, () => {
-  console.log('listening in on ', port);
+  console.log('listening in on port:', port);
 });
