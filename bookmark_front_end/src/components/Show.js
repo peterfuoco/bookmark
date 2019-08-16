@@ -5,12 +5,10 @@ class Show extends React.Component {
     return (
       <div className='show'>
         <h1>Website List</h1>
-
         {this.props.bookmarks.map(bookmark => {
           return (
             <div key={bookmark._id}>
-              <h3> {bookmark.title}</h3>
-              <h3> {bookmark.url} </h3>
+              <a href={bookmark.url}> {bookmark.title} </a>
             </div>
           );
         })}
