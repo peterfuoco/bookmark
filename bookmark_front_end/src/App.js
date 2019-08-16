@@ -3,6 +3,7 @@ import './App.css';
 import AddBookmark from './components/AddBookmark';
 import axios from 'axios';
 import Show from './components/Show';
+import Edit from './components/Edit';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -49,6 +50,7 @@ class App extends Component {
           baseURL={baseURL}
         />
         <Show bookmarks={this.state.bookmarks} />
+        <Edit baseURL={baseURL} />
       </div>
     );
   }
