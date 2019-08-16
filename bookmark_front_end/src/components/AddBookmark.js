@@ -8,6 +8,8 @@ class AddBookmark extends Component {
       title: '',
       url: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -28,7 +30,7 @@ class AddBookmark extends Component {
       title: '',
       url: ''
     });
-    this.props.handleAddBookmark(response.data);
+    this.props.handleAddBookmarks(response.data);
   }
 
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddBookmark from './components/AddBookmark';
 import axios from 'axios';
-import Show from './components/Show'
+import Show from './components/Show';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -18,6 +18,7 @@ class App extends Component {
     this.state = {
       bookmarks: []
     };
+    this.handleAddBookmarks = this.handleAddBookmarks.bind(this);
   }
 
   async getBookmarks() {
@@ -25,18 +26,28 @@ class App extends Component {
     const data = response.data;
     this.setState({
       bookmarks: data
-    })
+    });
   }
 
   componentDidMount() {
     this.getBookmarks();
-  
+  }
+
+  handleAddBookmarks(bookmark) {
+    const copyBookmarks = [...this.state.bookmarks];
+    copyBookmarks.unshift(bookmark);
+    this.setState({
+      bookmarks: copyBookmarks
+    });
   }
 
   render() {
     return (
       <div className='App'>
-        <AddBookmark  />
+        <AddBookmark
+          handleAddBookmarks={this.handleAddBookmarks}
+          baseURL={baseURL}
+        />
         <Show bookmarks={this.state.bookmarks} />
       </div>
     );
