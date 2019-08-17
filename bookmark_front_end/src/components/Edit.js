@@ -5,8 +5,9 @@ class AddBookmark extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      url: ''
+      title: this.props.bookmark.title,
+      url: this.props.bookmark.url,
+      _id: this.props.bookmark._id
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,15 +23,12 @@ class AddBookmark extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const baseURL = this.props.baseURL;
-    const response = await Axios.put(`${baseURL}/bookmarks`, {
+    const response = await Axios.put(`${baseURL}/bookmarks/${this.state._id}`, {
       title: this.state.title,
       url: this.state.url
     });
-    this.setState({
-      title: '',
-      url: ''
-    });
-    this.props.handleAddBookmarks(response.data);
+    this.props.handleEditBookmarks(response.data);
+    this.props.stopEdit();
   }
 
   render() {
@@ -45,7 +43,6 @@ class AddBookmark extends Component {
             name='title'
             onChange={this.handleChange}
             value={this.state.title}
-            placeholder={this.props.title}
           />
           <label htmlFor='url' />
           <input
@@ -54,7 +51,6 @@ class AddBookmark extends Component {
             name='url'
             onChange={this.handleChange}
             value={this.state.url}
-            placeholder={this.props.url}
           />
           <input type='submit' value='Edit Bookmark' />
         </form>

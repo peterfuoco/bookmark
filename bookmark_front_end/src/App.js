@@ -3,7 +3,6 @@ import './App.css';
 import AddBookmark from './components/AddBookmark';
 import axios from 'axios';
 import Show from './components/Show';
-import Edit from './components/Edit';
 
 let baseURL = process.env.REACT_APP_BASEURL;
 
@@ -21,6 +20,7 @@ class App extends Component {
     };
     this.handleAddBookmarks = this.handleAddBookmarks.bind(this);
     this.deleteBookmark = this.deleteBookmark.bind(this);
+    this.handleEditBookmarks = this.handleAddBookmarks.bind(this);
   }
 
   async getBookmarks() {
@@ -55,6 +55,21 @@ class App extends Component {
       bookmarks: filteredBookmarks
     });
   }
+  async handleEditBookmarks(selectedBookmark) {
+    await axios.put(`${baseURL}/bookmarks/${selectedBookmark._id}`);
+    const updatedBookmarks = this.state.bookmarks.map(bookmark => {
+      if (bookmark._id === selectedBookmark._id) {
+        bookmark.title = selectedBookmark.title;
+        bookmark.url = selectedBookmark.url;
+        return bookmark;
+      } else {
+        return bookmark;
+      }
+    });
+    this.setState({
+      bookmarks: updatedBookmarks
+    });
+  }
 
   render() {
     return (
@@ -67,6 +82,7 @@ class App extends Component {
           bookmarks={this.state.bookmarks}
           baseURL={baseURL}
           deleteBookmark={this.deleteBookmark}
+          handleEditBookmarks={this.handleEditBookmarks}
         />
       </div>
     );
