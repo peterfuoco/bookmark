@@ -27,7 +27,7 @@ class Show extends React.Component {
   render() {
     return (
       <div className='show'>
-        <h1>Website List</h1>
+        <h1>Website List</h1> 
         {this.state.edit ? (
           <Edit
             bookmark={this.state.currentEdit}
@@ -38,10 +38,11 @@ class Show extends React.Component {
         ) : null}
         {this.props.bookmarks.map(bookmark => {
           return (
+            <div className='showList'>
             <div key={bookmark._id}>
               <a href={bookmark.url}> {bookmark.title} </a>
               <h2 onClick={() => this.props.deleteBookmark(bookmark._id)}>
-                DELETE
+                Delete
               </h2>
               <h3
                 onClick={() => {
@@ -51,9 +52,10 @@ class Show extends React.Component {
                 Edit
               </h3>
             </div>
+            </div>
           );
         })}
-      </div>
+      </div> 
     );
   }
 }
