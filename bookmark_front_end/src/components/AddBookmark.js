@@ -35,9 +35,9 @@ class AddBookmark extends Component {
 
   render() {
     return (
-      <div class='addbookmark'>
+      <div className='addbookmark'>
         <div className='header'>
-        <h1> Bookmark App</h1>
+          <h1> Bookmark App</h1>
         </div>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='title' />
