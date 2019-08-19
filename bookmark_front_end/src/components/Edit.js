@@ -21,7 +21,6 @@ class AddBookmark extends Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault();
     const baseURL = this.props.baseURL;
     const response = await Axios.put(`${baseURL}/bookmarks/${this.state._id}`, {
       title: this.state.title,
